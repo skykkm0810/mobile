@@ -3,15 +3,18 @@
     <div class="background"></div>
     <div class="info">
         <div class="date">
-            <mat-icon class="prev" >keyboard_arrow_left</mat-icon>
-            <span class="date"></span>
-            <mat-icon class="next" >keyboard_arrow_right</mat-icon>
+            <mat-icon class="prev" (click)='dateprev()'>keyboard_arrow_left</mat-icon>
+            <span class="date">{{date}}</span>
+            <mat-icon class="next" (click)='datenext()'>keyboard_arrow_right</mat-icon>
         </div>
         <ul>
-            <li class="program">
-                <span class="time">오전 11:00</span>&nbsp;
-                <span class="proName">노래 교실</span>&nbsp;
-                <span class="class">제 2교실</span>
+            <li class="noProgram">
+                등록된 프로그램이 없습니다.
+            </li>
+            <li class="program" *ngFor='let row of rows'>
+                <span class="time">{{row.time}}</span>&nbsp;
+                <span class="proName">{{row.name}}</span>&nbsp;
+                <span class="class">{{row.class}}</span>
             </li>
         </ul>
     </div>
