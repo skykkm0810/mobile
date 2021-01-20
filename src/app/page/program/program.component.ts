@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PROGRAM} from '../../interface/interface';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-program',
   templateUrl: './program.component.html',
@@ -7,7 +9,10 @@ import { PROGRAM} from '../../interface/interface';
 })
 export class ProgramComponent implements OnInit {
   program = PROGRAM
-  constructor() { }
+  title: any;
+  constructor(
+    private route: ActivatedRoute
+  ) { }
   ngOnInit(): void {
     this.background()
 
@@ -19,6 +24,8 @@ export class ProgramComponent implements OnInit {
     this.date = year+'-'+monthF+'-'+dayF;
 
     this.dataMatching()
+
+    
   }
   // background
   backImg = ''

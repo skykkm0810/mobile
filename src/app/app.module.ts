@@ -46,6 +46,8 @@ import { MaintopComponent } from './layout/maintop/maintop.component';
 import { SubtopComponent } from './layout/subtop/subtop.component';
 import { MainPageComponent } from './page/main-page/main-page.component';
 import { ProgramComponent } from './page/program/program.component';
+import { CalendarComponent } from './page/calendar/calendar.component';
+import { AttandComponent } from './page/attand/attand.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { ProgramComponent } from './page/program/program.component';
     SubtopComponent,
     MainPageComponent,
     ProgramComponent,
+    CalendarComponent,
+    AttandComponent,
   ],
   imports: [
     BrowserModule,

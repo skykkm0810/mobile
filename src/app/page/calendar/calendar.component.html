@@ -1,0 +1,67 @@
+<app-subtop></app-subtop>
+<div class="wholeWrap">
+    <div class="calendarWrap">
+        <header>
+            <mat-icon class="prev" (click)='monthprev()'>keyboard_arrow_left</mat-icon>
+            <span class="date">{{date}}</span>
+            <mat-icon class="next" (click)='monthnext()'>keyboard_arrow_right</mat-icon>
+        </header>
+        <section class="calender">
+            <div class="dayOfWeek">
+                <div class="red">일</div>
+                <div>월</div>
+                <div>화</div>
+                <div>수</div>
+                <div>목</div>
+                <div>금</div>
+                <div class="blue">토</div>
+            </div>
+            <div class="allDays">
+                <!-- 근차니가 알려준 소중한정보 -->
+                <!-- <div class="days {{ d.content }}" (click)='checkPick(d)' *ngFor="let d of ds"></div> -->
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div>
+            </div>
+        </section>
+    </div>
+</div>
