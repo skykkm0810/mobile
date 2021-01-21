@@ -1,0 +1,44 @@
+<app-subtop></app-subtop>
+<div class="Wrap">
+  <div class="searchBox">
+    <input type="text" class="form-control" id="filter" (keyup)='Filter()'>
+    <p class="searchButton pointer"><span class="buttonIcon"></span></p>
+  </div>
+  <div class="listWrap">
+    <div class='list' (click)="upscroll(att,$event)" *ngFor='let att of attds'>
+      <div class="imgWrap none">
+        <img src="../../../assets/photo/user/user2.png" alt="사용자사진">
+      </div>
+      <span class="name">{{att.name}}</span>
+      <span class="attend">결석</span>
+    </div>
+  </div>
+  <div class="animateBox">
+    <span class="xbox" (click)='downscroll()'>
+      <mat-icon>close</mat-icon>
+    </span>
+    <div class="imgoutWrap">
+      <div class="imginnerWrap">
+        <img src="../../../assets/photo/user/user2.png" alt="username">
+      </div>
+    </div>
+    <div class="tag">
+      <p class="tagName"></p>
+      <p class="tagAge"></p>
+    </div>
+    <div class="tagInfoBox">
+      <p class="tagInfo desc">
+        <span class="label">특이사항</span>
+        <span class="contents">매주 1회 xx병원 방문 후 입소</span>
+      </p>
+      <p class="tagInfo teacher">
+        <span class="label">담당교사</span>
+        <span class="contents">김희애 교사</span>
+      </p>
+      <p class="tagInfo contact">
+        <span class="label">보호자연락처</span>
+        <span class="contents">010-1234-5678</span>
+      </p>
+    </div>
+  </div>
+</div>

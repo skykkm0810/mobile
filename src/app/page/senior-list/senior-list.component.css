@@ -1,0 +1,195 @@
+.Wrap {
+    width:100%;
+    height:calc(100% - 80px);
+}
+.searchBox {
+    background-color: #1F67D1;
+    height:80px;
+    padding-top: 20px;
+    position: relative;
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+.searchBox input {
+    margin:0 auto;
+    width: 80%;
+    height:40px;
+    border-radius: 20px;
+}
+.searchBox p {
+    width:40px;
+    height:40px;
+    position:absolute;
+    right:10%;
+    top:20px;
+    border-radius: 100%;
+    background-color: rgba(53, 124, 217, 0.5);
+}
+.searchBox p span {
+    display: block;
+    width:20px;
+    height:20px;
+    background: url(../../../assets/icon/Search.png) no-repeat center center / cover;
+    position: absolute;
+    left:10px;
+    top:10px;
+}
+/* 날짜 */
+.datePicker {
+    height:100px;
+    text-align: center;
+    line-height: 100px;
+}
+.datePicker .date {
+    font-size: 26px;
+    padding: 0 44px;
+    vertical-align: middle;
+    color:#1F67D1;
+    font-weight: bold;
+}
+.datePicker .arrow {
+    display: inline-block;
+    width:25px;
+    height:25px;
+    vertical-align: middle;
+}
+.left {
+    background: url(../../../assets/icon/arrow-left.png) no-repeat center center / cover;
+}
+.right {
+    background: url(../../../assets/icon/arrow-right.png) no-repeat center center / cover;
+}
+/* 리스트 */
+.list {
+    height:100px;
+    padding:10px 20px;
+    background-color: #fff;
+    position: relative;
+}
+.imgWrap {
+    display: inline-block;
+    width:80px;
+    height:80px;
+    border-radius: 100%;
+    vertical-align: middle;
+}
+.ok {
+    border:10px solid rgba(31, 103, 209, 0.7);
+}
+.none {
+    border:10px solid #dfdfdf;
+}
+.imgWrap img {
+    
+    width:60px;
+}
+.list::after{
+    content: '';
+    display: block;
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+}
+z.list .attend {
+    display: inline-block;
+    width:58px;
+    height:58px;
+    vertical-align: middle;
+    background-color:#F2F2F2 ;
+    border-radius: 100%;
+    font-size: 15px;
+    text-align: center;
+    line-height: 58px;
+    color:rgba(199, 46, 129, 0.7);
+    font-weight: bold;
+}
+.list .name {
+    display: inline-block;
+    width: calc(100% - 138px );
+    height:100%;
+    vertical-align: middle;
+    text-indent: 30px;
+    line-height: 80px;
+    font-weight: bold;
+    font-size: 26px;
+}
+/* 추가정보 */
+.animateBox{
+    width:100%;
+    height:340px;
+    padding:30px 0 0 30px;
+    background-color: #053A89;
+    border-radius: 10px 10px 0 0;
+    position: fixed;
+    left:0;
+    bottom:-340px;
+}
+.xbox {
+    position: absolute;
+    top:12px;
+    right:12px;
+    display: block;
+    background-color: #fff;
+    width:36px;
+    height:36px;
+    border-radius: 100%;
+    text-align: center;
+}
+.xbox .mat-icon {
+    line-height: 36px;
+}
+.imgoutWrap {
+    
+    width:160px;
+    height: 160px;
+    border-radius: 100%;
+    border: 15px solid rgba(255, 255, 255, 0.3); 
+}
+.imginnerWrap {
+    width: 130px;
+    height:130px;
+    border-radius: 100%;
+    border: 15px solid rgba(255, 255, 255, 0.6); 
+}
+.imginnerWrap img {
+    position: relative;
+    left:0; top:0;
+    width:100px;
+    z-index: 2;
+}
+.tag {
+    width:250px;
+    height:100px;
+    background-color: #fff;
+    border-radius: 50px;
+    position: absolute;
+    top:60px;
+    right:30px;
+    z-index: 1;
+    padding:25px 0 15px;
+}
+.tag p {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color:#053A89;
+}
+.tagInfoBox {
+    padding-top: 27px;
+}
+.tagInfo {
+    display: grid;
+    grid-template-columns: 110px calc(95% - 110px );
+    column-gap: 19px;
+}
+.tagInfo .label {
+    text-align: right;
+    color:#fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+.tagInfo .contents {
+    font-size: 18px;
+    color:#fff
+}

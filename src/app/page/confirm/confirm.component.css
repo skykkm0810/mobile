@@ -1,0 +1,49 @@
+.Wrap {
+    background: linear-gradient(121.41deg, #56F4EB 2.95%, #1F9ED5 86.3%);
+}
+.imgoutWrap {
+    position: relative;
+    top:30px;
+    margin:0 auto;
+    width:260px;
+    height: 260px;
+    border-radius: 100%;
+    border: 20px solid rgba(255, 255, 255, 0.3); 
+}
+.imginnerWrap {
+    width: 220px;
+    height:220px;
+    border-radius: 100%;
+    border: 20px solid rgba(255, 255, 255, 0.6); 
+}
+.imginnerWrap img {
+    width:180px;
+}
+.txt {
+    position: relative;
+    top:60px;
+    height:150px;   
+    background-color: #0B9AB9;
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.25);
+    padding:35px 90px;
+    color:#fff;
+    font-size: 30px;
+    line-height: 40px;
+    text-align: center;
+}
+.buttons{
+    text-align: center;
+}
+.buttons button {
+    background-color:   rgba(255, 255, 255, 0.33);
+    width:150px;
+    height:140px;
+    border-radius: 30px;
+    position: relative;
+    top:70px;
+    margin:0 25px;
+    color:#fff;
+    font-size: 30px;
+    border: 2px solid #fff;
+    font-weight: bold;
+}

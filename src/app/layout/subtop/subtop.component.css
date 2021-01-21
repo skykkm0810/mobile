@@ -1,11 +1,9 @@
 .subtop {
+    height: 80px;
+    line-height: 80px;
+    background-color: #357CD9;
     position: relative;
-}
-.backMain {
-    position: absolute;
-    left:0;
-    top:calc(50% - 18px);
-}
+  }
 h2 {
     text-align: center;
     line-height: 80px;
@@ -14,3 +12,11 @@ h2 {
     color:#fff;
     font-size: 28px;
 }
+.backIcon {
+    width:48px;
+    height:48px;
+    background: url(../../../assets/icon/arrow-left-top.png) no-repeat center center / cover;
+    position: absolute;
+    left:20px;
+    top:16px;
+} 

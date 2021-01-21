@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./maintop.component.css']
 })
 export class MaintopComponent implements OnInit {
-  name = '요셉재가노인복지센터'
   constructor() { }
   
   ngOnInit(): void {

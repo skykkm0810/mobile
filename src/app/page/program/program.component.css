@@ -1,22 +1,97 @@
 .background {
     width:100%;
-    border:1px solid #ccc;
+    height:300px;
 }
-.info{
-    padding:1rem;
-}
-.date{
+
+.datePicker {
+    height:100px;
     text-align: center;
-    font-size: 1.5rem;
+    line-height: 100px;
 }
-.date .mat-icon {
+.datePicker .date {
+    font-size: 26px;
+    padding: 0 44px;
     vertical-align: middle;
-    cursor:pointer;
+    color:#1F67D1;
+    font-weight: bold;
 }
-ul {
-    padding:1rem;
+.datePicker .arrow {
+    display: inline-block;
+    width:25px;
+    height:25px;
+    vertical-align: middle;
 }
+.left {
+    background: url(../../../assets/icon/arrow-left.png) no-repeat center center / cover;
+}
+.right {
+    background: url(../../../assets/icon/arrow-right.png) no-repeat center center / cover;
+}
+
+/* 리스트 */
 ul li {
-    padding:0.3rem 0;
-    list-style:disc;
+    width:100%;
+    height:104px;
+    background-color: #1F67D1;
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.25);
+    padding:20px;
+    position: relative;
+}
+.program .onoff {
+    display: inline-block;
+    width:30px;
+    height:30px;
+    background-color: #fff;
+    border-radius: 100%;
+    vertical-align: middle;
+}
+.program .on {
+    background-color: #F3BD30;
+}
+.program .time {
+    display: inline-block;
+    height:100%;
+    width:70px;
+    vertical-align: middle;
+    line-height: 32px;
+    padding-left: 20px;
+    color:#fff;
+    font-size: 23px;
+}
+.program p {
+    display: inline-block;
+    padding-left: 43px;
+    height:100%;
+    vertical-align: middle;
+}
+.program p span{
+    display: inline-block;
+    height:50%;
+    width:100%;
+    line-height: 32px;
+    color:#fff;
+    margin:0;
+}
+.program p span.class {
+    font-size: 20px;
+}
+.program p span.proName {
+    font-size: 28px;
+}
+.program::after{
+    content: '';
+    display: block;
+    width:100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+}
+/*  */
+.noProgram {
+    text-align: center;
+    vertical-align: 64px;
+    color:#fff;
+    line-height: 64px;
+    font-size: 24px;
 }

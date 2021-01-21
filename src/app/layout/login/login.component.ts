@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  height: any;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.height = window.innerHeight;
+    this.fixBack()
   }
-
+  fixBack() {
+    var back = document.getElementsByClassName('Wrap')[0] as HTMLElement
+    back.style.height = this.height + 'px';
+  }
 }

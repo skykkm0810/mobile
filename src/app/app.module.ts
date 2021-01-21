@@ -48,6 +48,13 @@ import { MainPageComponent } from './page/main-page/main-page.component';
 import { ProgramComponent } from './page/program/program.component';
 import { CalendarComponent } from './page/calendar/calendar.component';
 import { AttandComponent } from './page/attand/attand.component';
+import { MedicineComponent } from './page/medicine/medicine.component';
+import { SeniorListComponent } from './page/senior-list/senior-list.component';
+import { FeedMedicineComponent } from './page/feed-medicine/feed-medicine.component';
+import { MedicineTopComponent } from './layout/medicine-top/medicine-top.component';
+import { ConfirmComponent } from './page/confirm/confirm.component';
+import { CompleteComponent } from './page/complete/complete.component';
+import { Complete2Component } from './page/complete2/complete2.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +66,13 @@ import { AttandComponent } from './page/attand/attand.component';
     ProgramComponent,
     CalendarComponent,
     AttandComponent,
+    MedicineComponent,
+    SeniorListComponent,
+    FeedMedicineComponent,
+    MedicineTopComponent,
+    ConfirmComponent,
+    CompleteComponent,
+    Complete2Component,
   ],
   imports: [
     BrowserModule,

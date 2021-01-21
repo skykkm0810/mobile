@@ -1,0 +1,44 @@
+<app-subtop></app-subtop>
+<div class="Wrap">
+  <div class="searchBox">
+    <input type="text" class="form-control" id="filter" (keyup)='Filter()'>
+    <p class="searchButton pointer"><span class="buttonIcon"></span></p>
+  </div>
+  <div class="datePicker">
+    <span class="arrow left"(click)='dateprev()'></span>
+    <span class="date">{{date}}</span>
+    <span class="arrow right"(click)='datenext()'></span>
+  </div>
+  <div class="listWrap">
+    <div class='list' (click)="boxUp(feed,$event)" *ngFor='let feed of feeds'>
+      <div class="imgWrap none">
+        <img src="../../../assets/photo/user/user2.png" alt="사용자사진">
+      </div>
+      <span class="name">{{feed.name}}</span>
+      <span class="chkIcon"></span>
+    </div>
+  </div>
+  <div class="animateBox">
+    <span class="xbox" (click)='downscroll()'>
+      <mat-icon>close</mat-icon>
+    </span>
+    <div class="tagInfoBox">
+      <p class="tagInfo teacher">
+        <span class="label">투약자</span>
+        <span class="contents"></span>
+      </p>
+      <p class="tagInfo what">
+        <span class="label">약 종류</span>
+        <span class="contents"></span>
+      </p>
+      <p class="tagInfo time">
+        <span class="label">투약 시간</span>
+        <span class="contents"></span>
+      </p>
+      <p class="tagInfo contact">
+        <span class="label">담당자 번호</span>
+        <span class="contents"></span>
+      </p>
+    </div>
+  </div>
+</div>

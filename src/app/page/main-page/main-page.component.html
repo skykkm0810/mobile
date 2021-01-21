@@ -1,27 +1,17 @@
 <app-maintop></app-maintop>
 <div class="topBox">
-    <div class="profile">
-        <img src="../../../assets/photo/noimg.png" alt="직원이미지">
-        <p><span class="name">김경민</span>&nbsp;<span class="grade">교사</span></p>
+  <div class="imgoutWrap">
+    <div class="imginnerWrap">
+      <img src="../../../assets/photo/user/user2.png" alt="username">
     </div>
-    <p class="belong">요셉재가노인복지센터</p>
+  </div>
+  <p class="belong">요셉재가노인복지센터</p>
+  <p class="user"><span class="name">김경민</span>&nbsp;<span class="grade">교사</span></p>
 </div>
-<div class="menuBox">
-    <ul>
-        <li class="program">
-            <button mat-button routerLink='program'>오늘의 프로그램</button>
-        </li>
-        <li class="attandance">
-            <button mat-button routerLink='calendar'>출석부</button>
-        </li>
-        <li class="medicine">
-            <button mat-button>투약일지</button>
-        </li>
-        <li class="seniorList">
-            <button mat-button>돌봄명단</button>
-        </li>
-        <li class="emergencyCall">
-            <button mat-button>긴급연락</button>  
-        </li>
-    </ul>
+<div class="MainMenu program" routerLink='program'><span class="icon"></span>오늘의 프로그램</div>
+<div class="MainMenu calendar" routerLink='calendar'><span class="icon"></span>출석부</div>
+<div class="MainMenu medicine" routerLink='medicine'><span class="icon"></span>투약일지</div>
+<div class="MainMenu seniorlist" routerLink='seniorlist'><span class="icon"></span>어르신명단</div>
+<div class="MainMenu emergency">
+    <span class="icon"></span><a href="tel:119">긴급전화</a>
 </div>

@@ -1,0 +1,92 @@
+.Wrap {
+    width:100%;
+    background: linear-gradient(121.41deg, #56F4EB 2.95%, #1F9ED5 86.3%);
+}
+.logo {
+    width:200px;
+    height:130px;
+    background: url(../../../assets/photo/logo.png);
+    position: absolute;
+    top:87px;
+    left: calc(50% - 100px);
+}
+.loginBox {
+    background-color: #fff;
+    width:300px;
+    height:300px;
+    position: absolute;
+    top:263px;
+    left: calc(50% - 150px);
+    border-radius: 10px;
+    padding:44px 10px 0;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+}
+.loginBox .date{
+    width:188px;
+    height:44px;
+    position: absolute;
+    top:0;
+    left: calc(50% - 94px);
+    background-color: #357CD9;
+    color:#fff;
+    line-height: 44px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+}
+.inputBox {
+    margin-top: 50px;
+    width:100%;
+    height:50px;
+    border-bottom:1px solid #357CD9; 
+    position: relative;
+}
+.inputBox label {
+    font-size: 12px;
+    color:#357CD9;
+    margin:0;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.inputBox .icon {
+    display: block;
+    width:20px;
+    height:20px;
+    position: absolute;
+    bottom:10px;
+    left:0;
+}
+.id .icon {
+    background: url(../../../assets/icon/id.png) no-repeat center center / cover;
+}
+
+.pass .icon {
+    background: url(../../../assets/icon/password.png) no-repeat center center / cover;
+}
+.inputBox input {
+    border:0;
+    padding:10px 0;
+    position: absolute;
+    bottom:0;
+    left: 50px;
+    width:calc(100% - 50px);
+}
+.inputBox input:focus {
+    outline: none;
+}
+.loginButton {
+    width:270px;
+    height:55px;
+    background-color: #fff;
+    color:#357CD9;
+    position: absolute;
+    top:623px;
+    left: calc(50% - 135px);
+    border-radius: 38px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+}
+.loginButton:focus{
+    outline: none;
+}

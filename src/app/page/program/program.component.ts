@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./program.component.css']
 })
 export class ProgramComponent implements OnInit {
+  backImg :any =''
   program = PROGRAM
   title: any;
   constructor(
@@ -23,18 +24,17 @@ export class ProgramComponent implements OnInit {
     var dayF = ('00' + day).slice(-2);
     this.date = year+'-'+monthF+'-'+dayF;
 
-    this.dataMatching()
-
-    
+    this.dataMatching();
+    setTimeout(function(){
+      (document.getElementsByClassName('program')[0] as HTMLElement).click();
+    },500)
   }
   // background
-  backImg = ''
   background(){
     var back = document.getElementsByClassName('background')[0] as HTMLElement;
-    back.style.height = back.clientWidth + 'px';
     back.style.background = 'no-repeat center center / contain'
     if(this.backImg !== ''){
-      back.style.backgroundImage = 'url('+ this.backImg +')'
+      back.style.backgroundImage = 'url(../../../assets/'+ this.backImg +')'
     }
     else {
       back.style.backgroundImage = 'url(../../../assets/photo/noimg.png)';
@@ -62,7 +62,8 @@ export class ProgramComponent implements OnInit {
 
     var noProgram = document.getElementsByClassName('noProgram')[0] as HTMLElement;
         noProgram.style.display = 'block';
-    this.dataMatching()
+    this.dataMatching();
+    (document.getElementsByClassName('program')[0] as HTMLElement).click();
   }
   datenext(){
     this.day = this.day + 1
@@ -81,7 +82,8 @@ export class ProgramComponent implements OnInit {
     
     var noProgram = document.getElementsByClassName('noProgram')[0] as HTMLElement;
         noProgram.style.display = 'block';
-    this.dataMatching()
+    this.dataMatching();
+    (document.getElementsByClassName('program')[0] as HTMLElement).click();
   }
   // 데이터 매칭
   rows = new Array;
@@ -94,5 +96,19 @@ export class ProgramComponent implements OnInit {
         noProgram.style.display = 'none';
       }
     }
+  }
+  clicked(row:any,e:Event){
+    var lists = document.getElementsByClassName('on')
+    for(var i=0; i<lists.length; i++){
+      lists[i].classList.remove('on')
+    }
+    var list = (e.target) as HTMLElement;
+    (list.getElementsByClassName('onoff')[0] as HTMLElement).classList.add('on')
+
+    this.backImg = row.imgurl
+    this.background();
+  }
+  nothing(){
+    this.backImg = ''
   }
 }

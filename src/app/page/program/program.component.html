@@ -1,21 +1,24 @@
 <app-subtop></app-subtop>
-<div class="wholeWrap">
-    <div class="background"></div>
-    <div class="info">
-        <div class="date">
-            <mat-icon class="prev" (click)='dateprev()'>keyboard_arrow_left</mat-icon>
-            <span class="date">{{date}}</span>
-            <mat-icon class="next" (click)='datenext()'>keyboard_arrow_right</mat-icon>
-        </div>
-        <ul>
-            <li class="noProgram">
-                등록된 프로그램이 없습니다.
-            </li>
-            <li class="program" *ngFor='let row of rows'>
-                <span class="time">{{row.time}}</span>&nbsp;
-                <span class="proName">{{row.name}}</span>&nbsp;
-                <span class="class">{{row.class}}</span>
-            </li>
-        </ul>
-    </div>
+<div class="Wrap">
+
+  <div class="background"></div>
+  <div class="datePicker">
+    <span class="arrow left" (click)='dateprev()'></span>
+    <span class="date">{{date}}</span>
+    <span class="arrow right" (click)='datenext()'></span>
+  </div>
+  <ul>
+    <li class="noProgram" (click)='nothing()'>
+      등록된 프로그램이 없습니다.
+    </li>
+    <li class="program" *ngFor='let row of rows' (click)='clicked(row,$event)'>
+      <span class="onoff"></span>
+      <span class="time">{{row.time}}</span>&nbsp;
+      <p>
+          <span class="class">{{row.class}}</span>
+          <span class="proName">{{row.name}}</span>&nbsp;
+      </p>
+    </li>
+  </ul>
+
 </div>

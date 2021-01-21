@@ -1,0 +1,56 @@
+.Wrap {
+    background: linear-gradient(121.41deg, #56F4EB 2.95%, #1F9ED5 86.3%);
+}
+.iconBox{
+    height:230px;
+    padding-top:50px;
+    padding-bottom:30px;
+    box-sizing: border-box;
+}
+.iconBox .icon {
+    margin:0 auto;
+    width:150px;
+    height:150px;
+    background: url(../../../assets/icon/feed.png) no-repeat center center / contain;
+}
+.txtBox{
+    height:250px;
+}
+.date {
+    height:60px;
+    width:300px;
+    margin:0 auto;
+    background-color: #fff;
+    color:#053A89;
+    text-align: center;
+    line-height: 60px;
+    font-size: 26px;
+    border-radius: 10px 10px 0 0 ;
+    font-weight: bold;
+}
+.txt {
+    height:150px;   
+    background-color: #0B9AB9;
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.25);
+    padding:20px 0;
+    color:#fff;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+}
+.txt .name {
+    font-weight: bold;
+}
+button {
+    display: block;
+    background-color:   rgba(255, 255, 255, 0.33);
+    width:200px;
+    height:90px;
+    border-radius: 30px;
+    margin:0 25px;
+    color:#fff;
+    font-size: 30px;
+    border: 2px solid #fff;
+    font-weight: bold;
+    margin:0 auto;
+}
