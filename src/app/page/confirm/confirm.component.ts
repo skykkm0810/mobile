@@ -29,7 +29,7 @@ export class ConfirmComponent implements OnInit {
     back.style.height = this.height - 80 + 'px';
   }
   close(){
-    window.close()
+    history.go(-1);
   }
   link(){
     this.router.navigate(['/'+this.info+'Ok']);

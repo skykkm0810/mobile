@@ -22,7 +22,7 @@ export class CompleteComponent implements OnInit {
     back.style.height = this.height - 80 + 'px';
   }
   close(){
-    window.close();
+    history.go(-2);
   }
   
 }
