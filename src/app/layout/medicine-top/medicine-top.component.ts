@@ -11,5 +11,5 @@ export class MedicineTopComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  title ='요셉제가노인복지센터';
 }

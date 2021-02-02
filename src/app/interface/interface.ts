@@ -7,7 +7,7 @@ export const TAGS : Record<string, string> = {
     SENIORLIST: 'seniorlist',
     EMERGENCY: 'emergency',
     LOGIN: 'login',
-    FEED: 'feed',
+    FEED: 'feed/:key',
     CONFIRM: 'confirm/:key',
     FEEDOK: 'feedOk',
     ATTENDOK: 'attendOk',
