@@ -17,7 +17,7 @@ export class ConfirmComponent implements OnInit {
   ) {
     phxChannel.Event.subscribe( data => {
       console.log(data);
-      if ( data == 'feed' ) {
+      if ( data.body == 'feed' ) {
         this.router.navigate(['/feedOk']);
       } else {
         this.router.navigate(['/attendOk']);
@@ -59,6 +59,7 @@ export class ConfirmComponent implements OnInit {
     history.go(-1);
   }
   link(){
+    console.log(this.info.confirm);
     if( this.info.confirm == 1) {
       this.phxChannel.send('drug', this.info)
     } else {
