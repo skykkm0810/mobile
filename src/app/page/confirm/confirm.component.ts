@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Environment } from 'src/app/environment/environment';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 @Component({
   selector: 'app-confirm',
@@ -22,8 +23,15 @@ export class ConfirmComponent implements OnInit {
         this.router.navigate(['/attendOk']);
       }
     })
+    phxChannel.Senior.subscribe( data => {
+      console.log(data);
+      this.seniorInfo = data;
+    })
   }
-  
+
+  filePath = Environment.filePath;
+  id;
+  seniorInfo ={ file: [{path: ''}], name: ''};
   info: any = {
     seniorId: '',
     confirm: '',
@@ -31,9 +39,11 @@ export class ConfirmComponent implements OnInit {
     status: true,
   }
   ngOnInit(): void {
+    this.id = this.phxChannel.getId;
     this.info.confirm = this.phxChannel.getConfirm;
     this.info.seniorId = this.phxChannel.getId;
     console.log(this.info.confirm);
+    this.phxChannel.get('senior', {id: this.id})
 
     this.height = window.outerHeight;
     setTimeout(() => {

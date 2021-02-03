@@ -72,6 +72,18 @@ export class PhxChannelService {
       this.Devices.emit(payload);
     })
     this.mobileChannel.on('')
+    this.seniorChannel = this.socket.channel('cpf:senior', {});
+    this.seniorChannel
+    .join()
+    .receive('ok', resp => {
+      console.log('Joined successfully', resp);
+    })
+    .receive('error', resp => {
+      console.log('Unable to join', resp);
+    });
+    this.seniorChannel.on('senior:detail', payload => {
+      this.Senior.emit(payload);
+    })
 
   }
 
@@ -106,6 +118,9 @@ export class PhxChannelService {
 
   get(channel, message) : void {
     switch (channel) {
+      case 'senior':
+        this.seniorChannel.push('senior:detail:req', { body: message });
+      break;
       
       default:
         break;

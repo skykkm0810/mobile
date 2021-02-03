@@ -2,10 +2,10 @@
 <div class="Wrap" (resize)='fixBack()' (load)='fixBack()'>
   <div class="imgoutWrap">
     <div class="imginnerWrap">
-      <img src="../../../assets/photo/user/user2.png" alt="username">
+      <img src="{{filePath}}{{seniorInfo.file[0].path}}" alt="username">
     </div>
   </div>
-  <div class="txt"><span class="name">이미자</span> 님이<br>맞으십니까?</div>
+  <div class="txt"><span class="name">{{seniorInfo.name}}</span> 님이<br>맞으십니까?</div>
   <div class="buttons">
       <button mat-button (click) ='close()'>아니요</button>
       <button mat-button (click)='link()'>네</button>
