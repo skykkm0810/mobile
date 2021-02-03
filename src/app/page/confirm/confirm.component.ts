@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
@@ -7,16 +8,32 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ConfirmComponent implements OnInit {
   height: any;
-  info: any;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
-
-  ) { }
-
+    private router: Router,
+    private phxChannel: PhxChannelService
+  ) {
+    phxChannel.Event.subscribe( data => {
+      console.log(data);
+      if ( data == 'feed' ) {
+        this.router.navigate(['/feedOk']);
+      } else {
+        this.router.navigate(['/attendOk']);
+      }
+    })
+  }
+  
+  info: any = {
+    seniorId: '',
+    confirm: '',
+    date: new Date(),
+    status: true,
+  }
   ngOnInit(): void {
-    this.info = this.route.snapshot.paramMap.get('key');
+    this.info.confirm = this.phxChannel.getConfirm;
+    this.info.seniorId = this.phxChannel.getId;
+    console.log(this.info.confirm);
 
     this.height = window.outerHeight;
     setTimeout(() => {
@@ -32,6 +49,10 @@ export class ConfirmComponent implements OnInit {
     history.go(-1);
   }
   link(){
-    this.router.navigate(['/'+this.info+'Ok']);
+    if( this.info.confirm == 1) {
+      this.phxChannel.send('drug', this.info)
+    } else {
+      this.phxChannel.send('present', this.info)
+    }
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router'
+import { ActivatedRoute, Router} from '@angular/router';
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
+
 @Component({
   selector: 'app-feed-medicine',
   templateUrl: './feed-medicine.component.html',
@@ -9,11 +11,18 @@ export class FeedMedicineComponent implements OnInit {
   height: any;
 
   constructor(
-    public router : Router
-
-  ) { }
-
+    public router : Router,
+    private phxChannel: PhxChannelService,
+    private route: ActivatedRoute
+  ) {
+  }
+  
+  id;
+  
   ngOnInit(): void {
+    this.id = this.route.snapshot.params;
+    console.log(this.id);
+    this.phxChannel.setId(this.id);
     this.height = window.innerHeight;
     setTimeout(()=>
     this.fixBack()
@@ -23,8 +32,9 @@ export class FeedMedicineComponent implements OnInit {
     var back = document.getElementsByClassName('Wrap')[0] as HTMLElement
     back.style.height = this.height - 80 + 'px';
   }
-  linkMove(e:Event){
-    var linkData = (e.target as HTMLElement).classList[0];
-    this.router.navigate(['/confirm/' + linkData]);
+  linkMove(el){
+    // var linkData = (e.target as HTMLElement).classList[0];
+    this.phxChannel.setConfirm( el );
+    this.router.navigate(['confirm']);
   }
 }

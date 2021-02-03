@@ -1,10 +1,10 @@
 <app-medicine-top></app-medicine-top>
 <div class="Wrap" (resize)='fixBack()' (load)='fixBack()'>
-    <div class="feed" routerLink='/confirm/feed'>
+    <div class="feed" (click)='linkMove(1)'>
         <div class="icon"></div>
         <span class="txt">투약확인</span>
     </div>
-    <div class="attend" (click)='linkMove($event)'>
+    <div class="attend" (click)='linkMove(2)'>
         <div class="icon"></div>
         <span class="txt">출석체크</span>
     </div>

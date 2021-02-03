@@ -4,7 +4,7 @@
         <div class="icon"></div>
     </div>
     <div class="txtBox">
-        <div class="date">2021-01-21</div>
+        <div class="date">{{ date | date: 'YYYY-MM-dd'}}</div>
         <div class='txt'><span class="name">이미자</span> 님이<br>출석을 완료하였습니다.</div>
     </div>
     <button mat-button (click)='close()'>나가기</button>

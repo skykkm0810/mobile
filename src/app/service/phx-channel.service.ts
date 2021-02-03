@@ -14,6 +14,23 @@ export class PhxChannelService {
     this.init_channel();
   }
 
+  id: any;
+  confirm: any;
+
+  get getId() {
+    return this.id;
+  }
+  setId( el ) {
+    this.id = el.id;
+  }
+  get getConfirm() {
+    return this.confirm;
+  }
+  setConfirm( el ) {
+    this.confirm = el;
+  }
+
+
   socket: any;
   mobileChannel: any;
   seniorChannel: any;
@@ -23,6 +40,7 @@ export class PhxChannelService {
   @Output() Devices: EventEmitter<any> = new EventEmitter();
   @Output() Senior: EventEmitter<any> = new EventEmitter();
   @Output() Seniors: EventEmitter<any> = new EventEmitter();
+  @Output() Event: EventEmitter<any> = new EventEmitter();
 
 
   private init_channel() {
@@ -36,7 +54,7 @@ export class PhxChannelService {
     this.socket.connect();
 
 
-    this.mobileChannel = this.socket.channel('cpf:device', {});
+    this.mobileChannel = this.socket.channel('cpf:mobile', {});
     this.mobileChannel
       .join()
       .receive('ok', resp => {
@@ -45,42 +63,30 @@ export class PhxChannelService {
       .receive('error', resp => {
         console.log('Unable to join', resp);
       });
-    this.mobileChannel.on('device:add', payload => {
-      // console.log('cpf:device from phx channel: ', payload);
+    this.mobileChannel.on('mobile:add', payload => {
+      // console.log('cpf:mobile from phx channel: ', payload);
+      this.Event.emit(payload);
+    })
+    this.mobileChannel.on('mobile:list', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
       this.Devices.emit(payload);
     })
-    this.mobileChannel.on('device:list', payload => {
-      // console.log('cpf:device:list from phx socket: ', payload);
-      this.Devices.emit(payload);
-    })
-
-
-    this.seniorChannel = this.socket.channel('cpf:mobile', {});
-    this.seniorChannel
-    .join()
-    .receive('ok', resp => {
-      console.log('Joined successfully', resp);
-    })
-    .receive('error', resp => {
-      console.log('Unable to join', resp);
-    });
-    this.seniorChannel.on('senior:list', payload => {
-      // console.log('cpf:device:list from phx socket: ', payload);
-      this.Seniors.emit(payload);
-    })
-    this.seniorChannel.on('senior:detail', payload => {
-      // console.log('cpf:device:list from phx socket: ', payload);
-      this.Senior.emit(payload);
-    })
-    
+    this.mobileChannel.on('')
 
   }
 
   send(channel, message) {
     switch (channel) {
-      case 'device':
-        this.mobileChannel.push("device:add:req", {body: message});
-        break;
+      case 'mobile':
+        this.mobileChannel.push("mobile:add:req", {body: message});
+      break;
+      case 'drug':
+        this.mobileChannel.push("mobile:drug:add:req", {body: message});
+      break;
+      case 'present':
+        this.mobileChannel.push("mobile:present:add:req", {body: message});
+      break;
+      
 
       default:
         break;
@@ -89,8 +95,8 @@ export class PhxChannelService {
 
   gets(channel, message?) : void {
     switch (channel) {
-      case 'device':
-        this.mobileChannel.push('device:list:req', { body: message });
+      case 'mobile':
+        this.mobileChannel.push('mobile:list:req', { body: message });
         break;
     
       default:
@@ -109,8 +115,8 @@ export class PhxChannelService {
 
   up(channel, message) : void {
     switch ( channel ) {
-      case 'device':
-        this.mobileChannel.push('device:detail:update:req', {body: message});
+      case 'mobile':
+        this.mobileChannel.push('mobile:detail:update:req', {body: message});
         break;
 
       default:
@@ -120,8 +126,8 @@ export class PhxChannelService {
 
   del(channel, message) : void {
     switch ( channel ) {
-      case 'device':
-        this.mobileChannel.push('device:delete:req', {body: message});
+      case 'mobile':
+        this.mobileChannel.push('mobile:delete:req', {body: message});
         break;
 
       default:

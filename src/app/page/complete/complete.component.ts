@@ -17,6 +17,9 @@ export class CompleteComponent implements OnInit {
     this.fixBack()
     ,300)
   }
+
+  date = new Date();
+  
   fixBack() {
     var back = document.getElementsByClassName('Wrap')[0] as HTMLElement
     back.style.height = this.height - 80 + 'px';
