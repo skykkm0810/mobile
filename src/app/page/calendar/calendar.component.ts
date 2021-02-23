@@ -20,8 +20,9 @@ export class CalendarComponent implements AfterViewInit {
    }
 
   ngAfterViewInit(): void {
-    this.filldays()
-    this.dataMatching()
+    this.filldays();
+    this.dataMatching();
+    this.todayshow();
   }
 
   // ds: any =[
@@ -72,7 +73,8 @@ export class CalendarComponent implements AfterViewInit {
   year = (new Date).getFullYear()
   month = (new Date).getMonth() + 1
   day = (new Date).getDate()
-  date = ''
+  date = '';
+  today = new Date();
   monthprev(){
     this.month = this.month - 1;
     if(this.month == 0){
@@ -112,6 +114,7 @@ export class CalendarComponent implements AfterViewInit {
     }
   }
   dataMatching(){
+    // 수정필요
     var daybox = document.querySelectorAll('.days');
     var monthF2 = ('00' + this.month).slice(-2);
     for(var i=0; i<42; i++){
@@ -123,6 +126,14 @@ export class CalendarComponent implements AfterViewInit {
           (daybox[i] as HTMLElement).style.backgroundColor = '#357CD9' ;
           (daybox[i] as HTMLElement).style.color = '#fff';
         }
+      }
+    }
+  }
+  todayshow(){
+    var daybox = document.querySelectorAll('.days');
+    for(var i=0; i<daybox.length; i++){
+      if(daybox[i].textContent == this.today.getDate()+''){
+        (daybox[i] as HTMLElement).style.backgroundColor = '#f7e78f3a';
       }
     }
   }
@@ -138,7 +149,6 @@ export class CalendarComponent implements AfterViewInit {
     var monthF3 = ('00' + this.month).slice(-2);
     var dateF2 = ('00' + thisbox.textContent).slice(-2);
     this.dateId = this.year + "-" + monthF3 + '-' + dateF2
-    console.log(this.dateId)
 
     this.router.navigate(['attand', this.dateId])
     

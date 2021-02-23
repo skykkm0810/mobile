@@ -12,7 +12,7 @@ export class SubtopComponent implements OnInit {
   title: any;
 
   constructor(
-   private route: ActivatedRoute
+   private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
