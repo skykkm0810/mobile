@@ -1,14 +1,16 @@
 <app-subtop></app-subtop>
 <div class="Wrap">
-
-  <div class="background"></div>
+  <div class="background" *ngIf='rows.length == 0'></div>
+  <div class="background2" *ngIf='rows.length > 0'>
+    <img src="{{rows[0].imgurl}}" alt="{{rows[0].name}} 사진">
+  </div>
   <div class="datePicker">
     <span class="arrow left" (click)='dateprev()'></span>
     <span class="date">{{date}}</span>
     <span class="arrow right" (click)='datenext()'></span>
   </div>
   <ul>
-    <li class="noProgram" (click)='nothing()'>
+    <li class="noProgram" *ngIf="rows.length == 0">
       등록된 프로그램이 없습니다.
     </li>
     <li class="program" *ngFor='let row of rows' (click)='clicked(row,$event)'>

@@ -33,7 +33,7 @@ header .date {
     border: 1px solid #ccc;
     display: grid;
     grid-template-columns: repeat(7,1fr);
-    background-color: #eee;
+    background-color: #ddd;
     gap: 1px 1px;
 
 }
@@ -49,10 +49,13 @@ header .date {
 .days:nth-child(7n){
     color:blue;
 }
-.allDays .days:hover {
-    background-color: rgba(243, 226, 148, 0.631);
+.attended {
+    background-color: royalblue!important;
+    color:#fff;
 }
-
+.today {
+    border:2px solid #000;
+}
 /* 
 근차니가 알려준 소중한 정보
 .allDays .sel {

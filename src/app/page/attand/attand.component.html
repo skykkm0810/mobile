@@ -10,44 +10,44 @@
     <span class="arrow right"(click)='datenext()'></span>
   </div>
   <div class="listWrap" >
-    <div class="list" *ngFor ='let att of attds' (click)='upscroll($event)'>
+    <div class="list" *ngFor ='let att of attds' (click)='upscroll(att)'>
       <div class="imgWrap">
-        <img src="../../../assets/photo/user/user2.png" alt="username">
+        <img src="{{att.img}}" alt="username">
       </div>
       <div class="info">
         <span class="attend"></span>
         <span class="name">{{att.name}}</span>
-        <p class="attIn">{{att.inTime}}</p>
-        <p class="attout">{{att.outTime}}</p>
+        <p class="attIn" *ngIf='att.inTime'>In: {{att.inTime}}</p>
+        <p class="attout" *ngIf='att.outTime'>Out: {{att.outTime}}</p>
       </div>
     </div>
   </div>
 
-  <div class="animateBox">
+  <div class="animateBox" *ngIf='forBox'>
     <span class="xbox" (click)='downscroll()'>
       <mat-icon>close</mat-icon>
     </span>
     <div class="imgoutWrap">
       <div class="imginnerWrap">
-        <img src="../../../assets/photo/user/user2.png" alt="username">
+        <img src="{{forBox.img}}" alt="username">
       </div>
     </div>
     <div class="tag">
-      <p class="tagName">김순자</p>
-      <p class="tagAge">(73세)</p>
+      <p class="tagName">{{forBox.name}}</p>
+      <p class="tagAge">({{forBox.age}}세)</p>
     </div>
     <div class="tagInfoBox">
       <p class="tagInfo desc">
         <span class="label">특이사항</span>
-        <span class="contents">매주 1회 xx병원 방문 후 입소</span>
+        <span class="contents">{{forBox.desc}}</span>
       </p>
       <p class="tagInfo teacher">
         <span class="label">담당교사</span>
-        <span class="contents">김희애 교사</span>
+        <span class="contents">{{forBox.teacher}} 교사</span>
       </p>
       <p class="tagInfo contact">
         <span class="label">보호자연락처</span>
-        <span class="contents">010-1234-5678</span>
+        <span class="contents">{{forBox.guardPN}}</span>
       </p>
     </div>
   </div>

@@ -16,3 +16,9 @@ li {list-style: none;}
 .hidden {
   display: none;
 }
+.preWrap {
+  white-space: pre-wrap;
+}
+.inlineBlock {
+  display:inline-block;
+}

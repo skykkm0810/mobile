@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PROGRAM} from '../../interface/interface';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { filePath} from '../../environment/environment'
 @Component({
   selector: 'app-program',
   templateUrl: './program.component.html',
@@ -15,7 +15,6 @@ export class ProgramComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
   ngOnInit(): void {
-    this.background()
 
     var year = (new Date).getFullYear();
     var month = (new Date).getMonth() + 1;
@@ -30,16 +29,7 @@ export class ProgramComponent implements OnInit {
     },500)
   }
   // background
-  background(){
-    var back = document.getElementsByClassName('background')[0] as HTMLElement;
-    back.style.background = 'no-repeat center center / contain'
-    if(this.backImg !== ''){
-      back.style.backgroundImage = 'url(../../../assets/'+ this.backImg +')'
-    }
-    else {
-      back.style.backgroundImage = 'url(../../../assets/photo/noimg.png)';
-    }
-  }
+  
   nd = new Date();
   year = this.nd.getFullYear();
   month = this.nd.getMonth()+1;
@@ -106,7 +96,6 @@ export class ProgramComponent implements OnInit {
     (list.getElementsByClassName('onoff')[0] as HTMLElement).classList.add('on')
 
     this.backImg = row.imgurl
-    this.background();
   }
   nothing(){
     this.backImg = ''

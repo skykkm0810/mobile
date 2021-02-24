@@ -55,6 +55,10 @@ import { MedicineTopComponent } from './layout/medicine-top/medicine-top.compone
 import { ConfirmComponent } from './page/confirm/confirm.component';
 import { CompleteComponent } from './page/complete/complete.component';
 import { Complete2Component } from './page/complete2/complete2.component';
+import { DietaryComponent } from './page/dietary/dietary.component';
+import { AddDietaryComponent } from './modal/add-dietary/add-dietary.component';
+import { EditDietaryComponent } from './modal/edit-dietary/edit-dietary.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -73,6 +77,9 @@ import { Complete2Component } from './page/complete2/complete2.component';
     ConfirmComponent,
     CompleteComponent,
     Complete2Component,
+    DietaryComponent,
+    AddDietaryComponent,
+    EditDietaryComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +121,7 @@ import { Complete2Component } from './page/complete2/complete2.component';
     MatTooltipModule,
     MatTreeModule,
     MatRippleModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

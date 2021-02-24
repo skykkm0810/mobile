@@ -1,5 +1,5 @@
 import { Route } from '@angular/compiler/src/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,AfterViewInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ATTENDANCE} from '../../interface/interface'
 @Component({
@@ -7,27 +7,32 @@ import { ATTENDANCE} from '../../interface/interface'
   templateUrl: './attand.component.html',
   styleUrls: ['./attand.component.css']
 })
-export class AttandComponent implements OnInit {
+export class AttandComponent {
   attd = ATTENDANCE;
   attds : any;
   info: any;
   year :any;
   month : any;
   day : any;
+  forBox:any;
   constructor(
     private route: ActivatedRoute
-  ) { }
+  ) {
+   }
     
   ngOnInit(): void {
-    this.info = this.route.snapshot.paramMap.get('key');
+    this.info = this.route.snapshot.paramMap.get('date');
+    console.log(this.info)
     this.year = Number(this.info.split('-')[0]);
     this.month = Number(this.info.split('-')[1]);
     this.day = Number(this.info.split('-')[2]);
     this.attendMatch();
-    setTimeout(()=>{
-      this.chkAttend();
-
-    },300)
+    
+    
+  }
+  ngAfterViewInit(){
+    this.chkAttend();
+      
   }
   Filter(){
     var filter, input, text,card ;
@@ -50,7 +55,7 @@ export class AttandComponent implements OnInit {
         result.push(this.attd[i])
       }
     }
-    this.attds = result
+    this.attds = result;
   }
   chkAttend(){
     // 출결 글자넣기
@@ -94,9 +99,7 @@ export class AttandComponent implements OnInit {
     this.info = this.year+'-'+monthF+'-'+dayF;
 
     this.attendMatch();
-    setTimeout(()=>{
-      this.chkAttend();
-    },300)
+    this.chkAttend();
   }
   datenext(){
     this.day = this.day + 1
@@ -118,14 +121,14 @@ export class AttandComponent implements OnInit {
       this.chkAttend();
     },300)
   }
-  upscroll(e:Event){
+  upscroll(att){
+    this.forBox = att;
     var box = document.getElementsByClassName('animateBox')[0] as HTMLElement;
-    box.style.position = 'fixed'
     box.style.bottom = 0+'px'
   }
   downscroll(){
     var box = document.getElementsByClassName('animateBox')[0] as HTMLElement;
-    box.style.position = 'fixed'
-    box.style.bottom = -350+'px'
+    var boxHeight = box.clientHeight;
+    box.style.bottom = -boxHeight+'px';
   }
 }

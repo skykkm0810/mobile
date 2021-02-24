@@ -12,6 +12,7 @@ import {FeedMedicineComponent} from '../app/page/feed-medicine/feed-medicine.com
 import {ConfirmComponent} from '../app/page/confirm/confirm.component';
 import {CompleteComponent} from '../app/page/complete/complete.component';
 import {Complete2Component} from '../app/page/complete2/complete2.component';
+import {DietaryComponent} from '../app/page/dietary/dietary.component';
 const routes: Routes = [
   { path: TAGS.MAINPAGE, component: MainPageComponent },
   { path: TAGS.PROGRAM, component: ProgramComponent , data: { title: '오늘의 프로그램'}},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: TAGS.ATTAND, component: AttandComponent, data: { title: '출석부 명단'} },
   { path: TAGS.MEDICINE, component: MedicineComponent, data: { title: '투약일지'} },
   { path: TAGS.SENIORLIST, component: SeniorListComponent, data: { title: '어르신 명단'} },
+  { path: TAGS.DIETARY, component: DietaryComponent, data: { title: '식단 업로드'} },
   { path: TAGS.LOGIN, component: LoginComponent },
   { path: TAGS.FEED, component: FeedMedicineComponent },
   { path: TAGS.CONFIRM, component: ConfirmComponent },

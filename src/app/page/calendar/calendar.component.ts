@@ -9,83 +9,87 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements AfterViewInit {
-  att = ATTENDANCE
-  dateId =''
+  att = ATTENDANCE;
+  dateId ='';
   constructor(
     private router: Router
   ) {
     var monthF = ('00' + this.month).slice(-2);
-    this.date = this.year+'.'+monthF
+    var dayF = ('00' + this.day).slice(-2);
+    this.date = this.year+'.'+monthF;
+    this.todayformat = this.year+"-"+monthF+'-'+dayF;
+    this.filldays();
     
    }
 
   ngAfterViewInit(): void {
-    this.filldays();
+    // this.filldays();
     this.dataMatching();
-    this.todayshow();
   }
 
-  // ds: any =[
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  //   { dat: '', selected: false, content: ''},
-  // ]
+  ds: any =[
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+    { date: '', day: ''},
+  ]
 
-  year = (new Date).getFullYear()
-  month = (new Date).getMonth() + 1
-  day = (new Date).getDate()
+  year = (new Date).getFullYear();
+  month = (new Date).getMonth() + 1;
+  day = (new Date).getDate();
   date = '';
+
   today = new Date();
+  todayformat;
   monthprev(){
     this.month = this.month - 1;
     if(this.month == 0){
-      this.year = this.year - 1
-      this.month = 12
+      this.year = this.year - 1;
+      this.month = 12;
     }
 
     var monthF = ('00' + this.month).slice(-2);
-    this.date = this.year +"."+ monthF
-    this.filldays()
-    this.dataMatching()
+    this.date = this.year +"."+ monthF;
+    this.filldays();
+    this.dataMatching();
   }
   monthnext(){
     this.month = this.month + 1;
@@ -95,49 +99,38 @@ export class CalendarComponent implements AfterViewInit {
     }
 
     var monthF = ('00' + this.month).slice(-2);
-    this.date = this.year +"."+ monthF
-    this.filldays()
-    this.dataMatching()
+    this.date = this.year +"."+ monthF;
+    this.filldays();
+    this.dataMatching();
   }
   filldays(){
     var LastMonthlastDay = new Date(this.year,this.month - 1,0).getDay();
     var lastDate = new Date(this.year,this.month,0).getDate();
     var dateContainer = document.getElementsByClassName('allDays')[0];
-    var daybox = document.querySelectorAll('.days');
     for(var i=0; i<42; i++){
-      
-      daybox[i].textContent = '';
+      this.ds[i].day = '';
       if( i>LastMonthlastDay && i<=LastMonthlastDay+lastDate){
-        daybox[i].textContent = i-LastMonthlastDay+"";
+        this.ds[i].day = ('00'+(i-LastMonthlastDay)).slice(-2);
+        this.ds[i].date =this.year +"-"+ ('00'+this.month).slice(-2)+"-"+this.ds[i].day;
         // this.ds[i].dat = daybox[i].textContent
       }
     }
   }
   dataMatching(){
     // 수정필요
-    var daybox = document.querySelectorAll('.days');
-    var monthF2 = ('00' + this.month).slice(-2);
+    var daybox = document.getElementsByClassName('days');
     for(var i=0; i<42; i++){
-      (daybox[i] as HTMLElement).style.backgroundColor = '#fff' 
-      var dateF = ('00' + daybox[i].textContent).slice(-2);
-      var makeChk = this.year+'-'+monthF2 +'-'+dateF
+      daybox[i].classList.remove('attended');
+      // console.log(daybox[i] as HTMLElement)
       for(var j =0; j<this.att.length; j++){
-        if(makeChk == this.att[j].date){
-          (daybox[i] as HTMLElement).style.backgroundColor = '#357CD9' ;
-          (daybox[i] as HTMLElement).style.color = '#fff';
+        console.log(this.ds[i].date,this.att[j].date)
+        if(this.ds[i].date == this.att[j].date){
+          daybox[i].classList.add('attended');
         }
       }
     }
   }
-  todayshow(){
-    var daybox = document.querySelectorAll('.days');
-    for(var i=0; i<daybox.length; i++){
-      if(daybox[i].textContent == this.today.getDate()+''){
-        (daybox[i] as HTMLElement).style.backgroundColor = '#f7e78f3a';
-      }
-    }
-  }
-  checkPick( e: Event ){
+  checkPick( date ){
     // 근차니가 알려준 소중한정보
     // info.selected = !info.selected;
     // if ( info.selected ) {
@@ -145,12 +138,6 @@ export class CalendarComponent implements AfterViewInit {
     // } else {
     //   info.content = '';
     // }
-    var thisbox =  e.target as HTMLElement;
-    var monthF3 = ('00' + this.month).slice(-2);
-    var dateF2 = ('00' + thisbox.textContent).slice(-2);
-    this.dateId = this.year + "-" + monthF3 + '-' + dateF2
-
-    this.router.navigate(['attand', this.dateId])
-    
+    this.router.navigate(['attand', date])
   }
 }

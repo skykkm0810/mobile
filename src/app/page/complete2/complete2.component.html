@@ -8,4 +8,5 @@
         <div class='txt'><span class="name">{{ seniorInfo.name }}</span> 님이<br>출석을 완료하였습니다.</div>
     </div>
     <button mat-button (click)='close()'>나가기</button>
+    <button mat-button routerLink='/attand/{{date | date: "YYYY-MM-dd"}}'>출석리스트</button>
 </div>

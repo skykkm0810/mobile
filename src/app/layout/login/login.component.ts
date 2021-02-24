@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   height: any;
-
+  today=new Date();
   constructor() { }
 
   ngOnInit(): void {

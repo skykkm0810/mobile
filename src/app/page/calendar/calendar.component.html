@@ -17,8 +17,8 @@
                 <div class="blue">토</div>
             </div>
             <div class="allDays">
-                <!-- 근차니가 알려준 소중한정보 -->
-                <!-- <div class="days {{ d.content }}" (click)='checkPick(d)' *ngFor="let d of ds"></div> -->
+                <div class="days" [class.today]='d.date == todayformat' (click)='checkPick(d.date)' *ngFor="let d of ds">{{d.day}}</div>
+                <!-- <div class="days"(click)='checkPick($event)'></div>
                 <div class="days"(click)='checkPick($event)'></div>
                 <div class="days"(click)='checkPick($event)'></div>
                 <div class="days"(click)='checkPick($event)'></div>
@@ -59,8 +59,7 @@
                 <div class="days"(click)='checkPick($event)'></div>
                 <div class="days"(click)='checkPick($event)'></div>
                 <div class="days"(click)='checkPick($event)'></div>
-                <div class="days"(click)='checkPick($event)'></div>
-                <div class="days"(click)='checkPick($event)'></div>
+                <div class="days"(click)='checkPick($event)'></div> -->
             </div>
         </section>
     </div>
