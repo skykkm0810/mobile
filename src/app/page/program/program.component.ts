@@ -7,53 +7,41 @@ import { filePath} from '../../environment/environment'
   templateUrl: './program.component.html',
   styleUrls: ['./program.component.css']
 })
-export class ProgramComponent implements OnInit {
-  backImg :any =''
-  program = PROGRAM
-  title: any;
+export class ProgramComponent{
+  
   constructor(
     private route: ActivatedRoute
   ) { }
   ngOnInit(): void {
 
-    var year = (new Date).getFullYear();
-    var month = (new Date).getMonth() + 1;
-    var day = (new Date).getDate();
-    var monthF = ('00' + month).slice(-2);
-    var dayF = ('00' + day).slice(-2);
-    this.date = year+'-'+monthF+'-'+dayF;
-
     this.dataMatching();
-    setTimeout(function(){
-      (document.getElementsByClassName('program')[0] as HTMLElement).click();
-    },500)
   }
-  // background
-  
+  ngAfterViewInit(): void {
+  }
+  program = PROGRAM
+  title: any;
+  filePath = filePath;
   nd = new Date();
   year = this.nd.getFullYear();
-  month = this.nd.getMonth()+1;
+  month = this.nd.getMonth();
   day = this.nd.getDate();
-  date=''
+  backImg
+  backName;
+  clickOn;
   // 날짜 이동
   dateprev(){
-    this.day = this.day - 1
+    this.day = this.day - 1 
     if(this.day == 0){
       this.month = this.month - 1;
       if(this.month == 0){
-        this.year = this.year - 1
-        this.month = 12
-      }
+          this.year = this.year - 1
+          this.month = 12
+        }
       this.day = new Date(this.year , this.month , 0).getDate();
     }
-    var monthF = ('00' + this.month).slice(-2);
-    var dayF = ('00' + this.day).slice(-2);
-    this.date = this.year+'-'+monthF+'-'+dayF;
-
-    var noProgram = document.getElementsByClassName('noProgram')[0] as HTMLElement;
-        noProgram.style.display = 'block';
+    this.nd = new Date(this.year, this.month, this.day);
     this.dataMatching();
-    (document.getElementsByClassName('program')[0] as HTMLElement).click();
+    // (document.getElementsByClassName('program')[0] as HTMLElement).click();
   }
   datenext(){
     this.day = this.day + 1
@@ -66,38 +54,31 @@ export class ProgramComponent implements OnInit {
       }
       this.day = 1
     }
-    var monthF = ('00' + this.month).slice(-2);
-    var dayF = ('00' + this.day).slice(-2);
-    this.date = this.year+'-'+monthF+'-'+dayF;
-    
-    var noProgram = document.getElementsByClassName('noProgram')[0] as HTMLElement;
-        noProgram.style.display = 'block';
+    this.nd = new Date(this.year, this.month, this.day);
+
     this.dataMatching();
-    (document.getElementsByClassName('program')[0] as HTMLElement).click();
+
+    // (document.getElementsByClassName('program')[0] as HTMLElement).click();
   }
   // 데이터 매칭
   rows = new Array;
   dataMatching() {
     this.rows = new Array;
     for(var i =0; i<this.program.length; i++){
-      if(this.program[i].date == this.date){
+      var pDate = new Date(this.program[i].date); 
+      if(pDate.getFullYear() == this.nd.getFullYear() && pDate.getMonth() == this.nd.getMonth() && pDate.getDate() == this.nd.getDate()){
         this.rows.push(this.program[i])
-        var noProgram = document.getElementsByClassName('noProgram')[0] as HTMLElement;
-        noProgram.style.display = 'none';
       }
     }
+    this.backImg = this.rows[0].imgurl;
+    this.backName = this.rows[0].name;
+    this.clickOn = this.rows[0];
   }
-  clicked(row:any,e:Event){
-    var lists = document.getElementsByClassName('on')
-    for(var i=0; i<lists.length; i++){
-      lists[i].classList.remove('on')
-    }
-    var list = (e.target) as HTMLElement;
-    (list.getElementsByClassName('onoff')[0] as HTMLElement).classList.add('on')
-
-    this.backImg = row.imgurl
+  
+  clicked(data){
+    this.clickOn = data; 
+    this.backImg = data.imgurl;
+    this.backName = data.name;
   }
-  nothing(){
-    this.backImg = ''
-  }
+  
 }

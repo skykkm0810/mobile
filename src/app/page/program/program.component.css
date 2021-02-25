@@ -54,7 +54,7 @@ ul li {
     border-radius: 100%;
     vertical-align: middle;
 }
-.program .on {
+.on .onoff {
     background-color: #F3BD30;
 }
 .program .time {

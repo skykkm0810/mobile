@@ -1,21 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
 import {ATTENDANCE} from '../../interface/interface'
-
+import {filePath} from '../../environment/environment';
 @Component({
   selector: 'app-senior-list',
   templateUrl: './senior-list.component.html',
   styleUrls: ['./senior-list.component.css']
 })
-export class SeniorListComponent implements OnInit {
+export class SeniorListComponent implements OnInit,AfterViewInit {
   attd = ATTENDANCE;
   attds : any;
+  attdn : any;
+  attDate;
+  today=new Date();
+  forBox;
+  filePath = filePath;
   constructor() { }
 
   ngOnInit(): void {
     this.attendMatch();
-    setTimeout(()=>{
-      this.chk();
-    },200)
+  }
+  ngAfterViewInit(){
+
   }
   Filter(){
     var filter, input, text,card ;
@@ -32,45 +37,28 @@ export class SeniorListComponent implements OnInit {
     }
   }
   attendMatch(){
-    var result = new Array;
-    for(var i=0; i<this.attd.length; i ++){
-      if(this.attd[i].chk == 'ok'){
-        result.push(this.attd[i])
+    this.attds = new Array;
+    this.attdn = new Array;
+    this.attDate = this.today;
+    for(var i=0; i<this.attd.length; i++){
+      let chkdate = new Date(this.attd[i].date);
+      if(chkdate.getFullYear() == this.attDate.getFullYear() && chkdate.getMonth() == this.attDate.getMonth() && chkdate.getDate() == this.attDate.getDate()){
+        this.attds.push(this.attd[i]);
       }
-    }
-    for(var i=0; i<this.attd.length; i ++){
-      if(this.attd[i].chk == 'none'){
-        result.push(this.attd[i])
-      }
-    }
-    this.attds = result
-  }
-  chk(){
-    // 색,테두리
-    var lists = document.getElementsByClassName('list');
-    var attds = this.attds;
-    for(var i=0; i<attds.length; i++){
-      if(attds[i].chk !== 'none'){
-        (lists[i] as HTMLElement).style.backgroundColor ='#F2F7FF';
-        (lists[i].getElementsByClassName('attend')[0] as HTMLElement).style.color = '#1F67D1';
-        lists[i].getElementsByClassName('attend')[0].textContent = '출석';
-        lists[i].getElementsByClassName('imgWrap')[0].classList.remove('none');
-        lists[i].getElementsByClassName('imgWrap')[0].classList.add('ok');
+      else{
+        this.attdn.push(this.attd[i]);
       }
     }
   }
-  upscroll(data:any, e:Event){
-    console.log(data.name)
+  
+  upscroll(data){
+    this.forBox = data;
     var box = document.getElementsByClassName('animateBox')[0] as HTMLElement;
-    box.style.position = 'fixed';
-    box.style.bottom = 0+'px';
-
-    (box.getElementsByClassName('tagName')[0] as HTMLElement).textContent = data.name;
-    (box.getElementsByClassName('tagAge')[0] as HTMLElement).textContent = data.age;
+    box.style.bottom = 0+'px'
   }
   downscroll(){
     var box = document.getElementsByClassName('animateBox')[0] as HTMLElement;
-    box.style.position = 'fixed'
-    box.style.bottom = -350+'px'
+    var boxHeight = box.clientHeight;
+    box.style.bottom = -boxHeight+'px';
   }
 }

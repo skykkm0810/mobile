@@ -2,20 +2,20 @@
 <div class="Wrap">
   <div class="background" *ngIf='rows.length == 0'></div>
   <div class="background2" *ngIf='rows.length > 0'>
-    <img src="{{rows[0].imgurl}}" alt="{{rows[0].name}} 사진">
+    <img src="{{filePath}}{{backImg}}" alt="{{backName}} 사진" class="bigImg">
   </div>
   <div class="datePicker">
     <span class="arrow left" (click)='dateprev()'></span>
-    <span class="date">{{date}}</span>
+    <span class="date">{{nd | date:'yyyy-MM-dd'}}</span>
     <span class="arrow right" (click)='datenext()'></span>
   </div>
   <ul>
     <li class="noProgram" *ngIf="rows.length == 0">
       등록된 프로그램이 없습니다.
     </li>
-    <li class="program" *ngFor='let row of rows' (click)='clicked(row,$event)'>
+    <li class="program" *ngFor='let row of rows' [class.on]='row === clickOn' (click)="clicked(row)">
       <span class="onoff"></span>
-      <span class="time">{{row.time}}</span>&nbsp;
+      <span class="time">{{row.date | date:'shortTime'}}</span>&nbsp;
       <p>
           <span class="class">{{row.class}}</span>
           <span class="proName">{{row.name}}</span>&nbsp;

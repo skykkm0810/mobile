@@ -28,5 +28,9 @@ export class EditDietaryComponent  {
     // 데이터 적용
     this.dialogRef.close();
   }
+  remove(){
+    // 데이터 삭제 후
+    this.dialogRef.close();
+  }
   info;
 }

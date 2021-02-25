@@ -1,7 +1,8 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit ,AfterViewInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ATTENDANCE} from '../../interface/interface'
+import { filePath} from '../../environment/environment';
+import { ATTENDANCE} from '../../interface/interface';
 @Component({
   selector: 'app-attand',
   templateUrl: './attand.component.html',
@@ -9,12 +10,15 @@ import { ATTENDANCE} from '../../interface/interface'
 })
 export class AttandComponent {
   attd = ATTENDANCE;
-  attds : any;
+  attds;
+  attdn;
+  attDate;
   info: any;
   year :any;
   month : any;
   day : any;
   forBox:any;
+  filePath = filePath;
   constructor(
     private route: ActivatedRoute
   ) {
@@ -31,7 +35,6 @@ export class AttandComponent {
     
   }
   ngAfterViewInit(){
-    this.chkAttend();
       
   }
   Filter(){
@@ -49,38 +52,18 @@ export class AttandComponent {
     }
   }
   attendMatch(){
-    var result = new Array;
-    for(var i=0; i<this.attd.length; i ++){
-      if(this.attd[i].date == this.info){
-        result.push(this.attd[i])
-      }
-    }
-    this.attds = result;
-  }
-  chkAttend(){
-    // 출결 글자넣기
-    var lists = document.getElementsByClassName('list');
-    for(var i=0; i<lists.length; i++){
-      if(lists[i].querySelector('.attIn')?.textContent !== ''){
-        lists[i].getElementsByClassName('imgWrap')[0].classList.add('ok');
-        lists[i].getElementsByClassName('attend')[0].textContent = '출석';
+    this.attds = new Array;
+    this.attdn = new Array;
+    this.attDate = new Date(this.info);
+    for(var i=0; i<this.attd.length; i++){
+      let chkdate = new Date(this.attd[i].date);
+      if(chkdate.getFullYear() == this.attDate.getFullYear() && chkdate.getMonth() == this.attDate.getMonth() && chkdate.getDate() == this.attDate.getDate()){
+        console.log(this.attd[i])
+        this.attds.push(this.attd[i]);
       }
       else{
-        lists[i].getElementsByClassName('imgWrap')[0].classList.add('none');
-        lists[i].getElementsByClassName('attend')[0].textContent = '결석';
+        this.attdn.push(this.attd[i]);
       }
-    }
-    // 출결 css
-    var attend = document.getElementsByClassName('attend');
-    for(var i=0; i< attend.length; i++){
-      var colortxt = attend[i] as HTMLElement;
-      if(((colortxt.closest('.list') as HTMLElement).querySelector('.imgWrap') as HTMLElement).classList.contains('ok')){
-        colortxt.style.color = '#1F67D1';
-      }
-      else{
-        colortxt.style.color = 'rgba(199, 46, 129, 0.7)';
-      }
-       
     }
   }
 
@@ -99,7 +82,6 @@ export class AttandComponent {
     this.info = this.year+'-'+monthF+'-'+dayF;
 
     this.attendMatch();
-    this.chkAttend();
   }
   datenext(){
     this.day = this.day + 1
@@ -117,12 +99,9 @@ export class AttandComponent {
     this.info = this.year+'-'+monthF+'-'+dayF;
 
     this.attendMatch();
-    setTimeout(()=>{
-      this.chkAttend();
-    },300)
   }
-  upscroll(att){
-    this.forBox = att;
+  upscroll(data){
+    this.forBox = data;
     var box = document.getElementsByClassName('animateBox')[0] as HTMLElement;
     box.style.bottom = 0+'px'
   }
