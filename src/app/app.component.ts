@@ -15,10 +15,8 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // if( !this.auth.isAuthenticated() ) {
-    //   this.router.navigate(['login']);
-    // }
-
+    if( !this.auth.isAuthenticated() ) {
+      this.router.navigate(['login']);
+    }
   }
-
 }

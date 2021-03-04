@@ -39,6 +39,10 @@ export class PhxChannelService {
 
   @Output() Device: EventEmitter<any> = new EventEmitter();
   @Output() Devices: EventEmitter<any> = new EventEmitter();
+  @Output() Activities: EventEmitter<any> = new EventEmitter();
+  @Output() Presents: EventEmitter<any> = new EventEmitter();
+  @Output() PresentAdd: EventEmitter<any> = new EventEmitter();
+  @Output() PresentAddInvalid: EventEmitter<any> = new EventEmitter();
   @Output() Senior: EventEmitter<any> = new EventEmitter();
   @Output() Seniors: EventEmitter<any> = new EventEmitter();
   @Output() Event: EventEmitter<any> = new EventEmitter();
@@ -74,7 +78,23 @@ export class PhxChannelService {
       // console.log('cpf:mobile:list from phx socket: ', payload);
       this.Devices.emit(payload);
     })
-    this.mobileChannel.on('')
+    this.mobileChannel.on('mobile:activity:list', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.Activities.emit(payload.body);
+    })
+    this.mobileChannel.on('mobile:present:list', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.Presents.emit(payload.body);
+    })
+    this.mobileChannel.on('mobile:present:add', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.PresentAdd.emit(payload.body);
+    })
+    this.mobileChannel.on('mobile:present:add:invalid', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.PresentAddInvalid.emit(payload.body);
+    })
+
     this.seniorChannel = this.socket.channel('cpf:senior', {});
     this.seniorChannel
     .join()
@@ -100,7 +120,7 @@ export class PhxChannelService {
       this.Access.emit(payload.body);
     })
     this.accountChannel.on('account:invalid', payload => {
-      this.Access.emit(payload.body);
+      this.AccessInvalid.emit(payload.body);
     })
 
   }
@@ -116,10 +136,6 @@ export class PhxChannelService {
       case 'present':
         this.mobileChannel.push("mobile:present:add:req", {body: message});
       break;
-      case 'access':
-        this.accountChannel.push("access:req", {body: message});
-      break;
-      
 
       default:
         break;
@@ -130,10 +146,17 @@ export class PhxChannelService {
     switch (channel) {
       case 'mobile':
         this.mobileChannel.push('mobile:list:req', { body: message });
-        break;
+      break;
+      case 'activity':
+        this.mobileChannel.push('mobile:activity:list:req', { body: message });
+      break;
+      case 'present':
+        this.mobileChannel.push('mobile:presents:list:req', { body: message });
+      break;
+      
     
       default:
-        break;
+      break;
     }
   }
 
@@ -141,6 +164,9 @@ export class PhxChannelService {
     switch (channel) {
       case 'senior':
         this.seniorChannel.push('senior:detail:req', { body: message });
+      break;
+      case 'access':
+        this.accountChannel.push("account:access:req", {body: message});
       break;
       
       default:

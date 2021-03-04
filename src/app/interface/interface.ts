@@ -14,7 +14,26 @@ export const TAGS : Record<string, string> = {
     DIETARY:'dietary',
 }
 
-
+export interface Activity {
+  id: number;
+  name: string;
+  inst: string;
+  date: string;
+}
+export interface Senior {
+  id: number;
+  name: string;
+  note: string;
+  gcontact: string;
+  file: string;
+  present: [{
+    id: number;
+    date: Date;
+    centerId: number;
+    seniorId: number;
+    accountId: number;
+  }]
+}
 export const PROGRAM  = [
     {id:1, name:'댄스교실', date:'2021-02-23T13:00',class:'제 2교실',imgurl:'photo/stretch.jpg'},
     {id:2, name:'요리교실', date:'2021-02-24T16:00',class:'제 2교실',imgurl:'photo/playColor.png'},

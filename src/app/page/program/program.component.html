@@ -10,16 +10,17 @@
     <span class="arrow right" (click)='datenext()'></span>
   </div>
   <ul>
-    <li class="noProgram" *ngIf="rows.length == 0">
+    <li class="noProgram" *ngIf="dataset.length == 0">
       등록된 프로그램이 없습니다.
     </li>
-    <li class="program" *ngFor='let row of rows' [class.on]='row === clickOn' (click)="clicked(row)">
+    <li class="program" *ngFor='let row of dataset' [class.on]='row === clickOn' (click)="clicked(row)">
       <span class="onoff"></span>
       <span class="time">{{row.date | date:'shortTime'}}</span>&nbsp;
-      <p>
-          <span class="class">{{row.class}}</span>
-          <span class="proName">{{row.name}}</span>&nbsp;
-      </p>
+      <!-- <p>
+          <span class="class"></span> -->
+          <!-- <span class="proName">{{row.name}}</span>&nbsp; -->
+      <!-- </p> -->
+      <p>{{row.name}}</p>
     </li>
   </ul>
 

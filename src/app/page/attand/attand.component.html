@@ -10,20 +10,20 @@
     <span class="arrow right"(click)='datenext()'></span>
   </div>
   <div class="listWrap" >
-    <div class="list" *ngFor ='let att of attds' (click)='upscroll(att)'>
+    <div class="list" *ngFor ='let att of dataset' (click)='upscroll(att)'>
       <div class="imgWrap ok">
-        <img src="{{filePath}}{{att.img}}" alt="username">
+        <img src="{{filePath}}{{att.file}}" alt="username">
       </div>
       <div class="info">
         <span class="attend">출석</span>
         <span class="name">{{att.name}}</span>
-        <p class="attIn" *ngIf='att.inTime'>In: {{att.inTime}}</p>
-        <p class="attout" *ngIf='att.outTime'>Out: {{att.outTime}}</p>
+        <p class="attIn" *ngIf='att.present.length > 0'>In: {{att.present[0].date | date: 'HH:mm'}}</p>
+        <!-- <p class="attout" *ngIf='att.outTime'>Out: {{att.outTime}}</p> -->
       </div>
     </div>
-    <div class="list" *ngFor ='let att of attdn' (click)='upscroll(att)'>
+    <div class="list" *ngFor ='let att of datasetu' (click)='upscroll(att)'>
       <div class="imgWrap none">
-        <img src="{{filePath}}{{att.img}}" alt="username">
+        <img src="{{filePath}}{{att.file}}" alt="username">
       </div>
       <div class="info">
         <span class="notAttend">결석</span>
@@ -38,7 +38,7 @@
     </span>
     <div class="imgoutWrap">
       <div class="imginnerWrap">
-        <img src="{{filePath}}{{forBox.img}}" alt="username">
+        <img src="{{filePath}}{{forBox.file}}" alt="username">
       </div>
     </div>
     <div class="tag">
@@ -48,16 +48,19 @@
     <div class="tagInfoBox">
       <p class="tagInfo desc">
         <span class="label">특이사항</span>
-        <span class="contents">{{forBox.desc}}</span>
+        <span class="contents">{{forBox.note}}</span>
       </p>
       <p class="tagInfo teacher">
-        <span class="label">투약자</span>
-        <span class="contents">{{forBox.putter}} 교사</span>
+        <span class="label">보호자</span>
+        <span class="contents">{{forBox.guard}}</span>
       </p>
       <p class="tagInfo contact">
-        <span class="label">투약자 연락처</span>
-        <span class="contents">{{forBox.puterContact}}</span>
+        <span class="label">연락처</span>
+        <span class="contents">{{forBox.gcontact}}</span>
       </p>
+      <div class="btnC" *ngIf="forBox.present.length == 0">
+        <button type="button" class="btn" (click)="present(forBox)">출석</button>
+      </div>
     </div>
   </div>
 </div>

@@ -59,9 +59,8 @@ ul li {
 }
 .program .time {
     display: inline-block;
-    height:100%;
-    width:70px;
-    vertical-align: middle;
+    width:300px;
+    /* vertical-align: middle; */
     line-height: 32px;
     padding-left: 20px;
     color:#fff;
@@ -70,11 +69,12 @@ ul li {
 .program p {
     display: inline-block;
     padding-left: 43px;
-    height:100%;
     vertical-align: middle;
+    color: #fff;
+    font-size: 20px;
 }
 .program p span{
-    display: inline-block;
+    display: block;
     height:50%;
     width:100%;
     line-height: 32px;
@@ -85,7 +85,7 @@ ul li {
     font-size: 20px;
 }
 .program p span.proName {
-    font-size: 28px;
+    font-size: 20px;
 }
 .program::after{
     content: '';

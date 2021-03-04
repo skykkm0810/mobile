@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   init(): void {
     let sub;
-    sub = this.phxChannel.Access.subscribe( () => {
+    sub = this.phxChannel.Access.subscribe( (data) => {
       this.router.navigate(['']);
     })
     this.subs.push(sub);
@@ -48,6 +48,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.info.pwd = '';
     })
     this.subs.push(sub);
+  }
+
+  submit() {
+    // console.log(this.info);
+    this.auth.signin(this.info);
   }
 
   fixBack() {
