@@ -5,12 +5,12 @@
     <div class="inputBox id">
       <label>아이디</label>
       <span class="icon"></span>
-      <input type="text">
+      <input type="text" name="uname" [(ngModel)]="info.uname">
     </div>
     <div class="inputBox pass">
       <label>패스워드</label>
       <span class="icon"></span>
-      <input type="password">
+      <input type="password" name="pwd" [(ngModel)]="info.pwd">
     </div>
   </div>
   <button mat-button class="loginButton">로그인</button>

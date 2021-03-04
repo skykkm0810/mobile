@@ -13,7 +13,6 @@ export class ProgramComponent{
     private route: ActivatedRoute
   ) { }
   ngOnInit(): void {
-
     this.dataMatching();
   }
   ngAfterViewInit(): void {
@@ -70,9 +69,9 @@ export class ProgramComponent{
         this.rows.push(this.program[i])
       }
     }
-    this.backImg = this.rows[0].imgurl;
-    this.backName = this.rows[0].name;
-    this.clickOn = this.rows[0];
+    // this.backImg = this.rows[0].imgurl;
+    // this.backName = this.rows[0].name;
+    // this.clickOn = this.rows[0];
   }
   
   clicked(data){

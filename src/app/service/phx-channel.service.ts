@@ -34,6 +34,7 @@ export class PhxChannelService {
   socket: any;
   mobileChannel: any;
   seniorChannel: any;
+  accountChannel: any;
 
 
   @Output() Device: EventEmitter<any> = new EventEmitter();
@@ -41,6 +42,8 @@ export class PhxChannelService {
   @Output() Senior: EventEmitter<any> = new EventEmitter();
   @Output() Seniors: EventEmitter<any> = new EventEmitter();
   @Output() Event: EventEmitter<any> = new EventEmitter();
+  @Output() Access: EventEmitter<any> = new EventEmitter();
+  @Output() AccessInvalid: EventEmitter<any> = new EventEmitter();
 
 
   private init_channel() {
@@ -84,6 +87,21 @@ export class PhxChannelService {
     this.seniorChannel.on('senior:detail', payload => {
       this.Senior.emit(payload);
     })
+    this.accountChannel = this.socket.channel('cpf:account', {});
+    this.accountChannel
+    .join()
+    .receive('ok', resp => {
+      console.log('Joined successfully', resp);
+    })
+    .receive('error', resp => {
+      console.log('Unable to join', resp);
+    });
+    this.accountChannel.on('account:access', payload => {
+      this.Access.emit(payload.body);
+    })
+    this.accountChannel.on('account:invalid', payload => {
+      this.Access.emit(payload.body);
+    })
 
   }
 
@@ -97,6 +115,9 @@ export class PhxChannelService {
       break;
       case 'present':
         this.mobileChannel.push("mobile:present:add:req", {body: message});
+      break;
+      case 'access':
+        this.accountChannel.push("access:req", {body: message});
       break;
       
 
