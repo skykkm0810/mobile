@@ -54,6 +54,7 @@ export class PhxChannelService {
   @Output() Event: EventEmitter<any> = new EventEmitter();
   @Output() Access: EventEmitter<any> = new EventEmitter();
   @Output() AccessInvalid: EventEmitter<any> = new EventEmitter();
+  @Output() Center: EventEmitter<any> = new EventEmitter();
 
 
   private init_channel() {
@@ -123,6 +124,9 @@ export class PhxChannelService {
     this.mobileChannel.on('mobile:meal:del', payload => {
       // console.log('cpf:mobile:list from phx socket: ', payload);
       this.MealDel.emit(payload.body);
+    })
+    this.mobileChannel.on('mobile:center:detail', payload => {
+      this.Center.emit(payload.body);
     })
 
     this.seniorChannel = this.socket.channel('cpf:senior', {});
@@ -206,6 +210,9 @@ export class PhxChannelService {
       break;
       case 'access':
         this.accountChannel.push("account:access:req", {body: message});
+      break;
+      case 'center':
+        this.mobileChannel.push("mobile:center:detail:req", {body: message});
       break;
       
       default:

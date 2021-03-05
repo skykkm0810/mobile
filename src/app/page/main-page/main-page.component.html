@@ -2,11 +2,11 @@
 <div class="topBox">
   <div class="imgoutWrap">
     <div class="imginnerWrap">
-      <img src="{{user[0].img}}" alt="{{user[0].name}}">
+      <img src="{{ f + info.file }}" alt="{{ info.name }}">
     </div>
   </div>
   <p class="belong">{{center}}</p>
-  <p class="user"><span class="name">{{user[0].name}}</span>&nbsp;<span class="grade">교사</span></p>
+  <p class="user"><span class="name">{{ info.name }}</span>&nbsp;<span class="grade">교사</span></p>
 </div>
 <div class="MainMenu program" routerLink='program'><span class="icon"></span>오늘의 프로그램</div>
 <div class="MainMenu calendar" routerLink='calendar'><span class="icon"></span>출석부</div>
