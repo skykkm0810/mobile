@@ -1,14 +1,15 @@
 <div class="dietcard">
     <div class="cardHedaer">
-        <input type='date' class="cDate form-control">
+        <input type='date' name="date" [(ngModel)]="info.date" class="cDate form-control">
     </div>
     <div class="photoWrap">
         <div class="inlineBlock imgCard">
             <label class="imgCall">
-                <span class="plus">+</span>
-                <input type="file" name="image" class="form-control hidden">
+                <span class="plus" *ngIf="info.img1 == '' || info.img1 == null || info.img1 == undefined">+</span>
+                <img *ngIf="info.img1 != '' && info.img1 != null && info.img1 != undefined" src="{{f + info.img1}}" alt="{{info.img1}} 그림">
+                <input type="file" id="file1" accept="image/*" name="image1" (click)="img('img1')" class="form-control hidden">
             </label>
-            <select name="meal" class="form-control meal">
+            <select name="meal1" [(ngModel)]="info.meal1" class="form-control meal">
                 <option value="">선택</option>
                 <option value="아침">아침</option>
                 <option value="점심">점심</option>
@@ -18,10 +19,11 @@
         </div>
         <div class="inlineBlock imgCard ">
             <label class="imgCall">
-                <span class="plus">+</span>
-                <input type="file" name="image" class="form-control hidden">
+                <span class="plus" *ngIf="info.img2 == '' || info.img2 == null || info.img2 == undefined">+</span>
+                <img *ngIf="info.img2 != '' && info.img2 != null && info.img2 != undefined" src="{{f + info.img2}}" alt="{{info.img2}} 그림">
+                <input type="file" id="file2" accept="image/*" name="image2" (click)="img('img2')" class="form-control hidden">
             </label>
-            <select name="meal" class="form-control meal">
+            <select name="meal2" [(ngModel)]="info.meal2" class="form-control meal">
                 <option value="">선택</option>
                 <option value="아침">아침</option>
                 <option value="점심">점심</option>
@@ -31,10 +33,11 @@
         </div>
         <div class="inlineBlock imgCard ">
             <label class="imgCall">
-                <span class="plus">+</span>
-                <input type="file" name="image" class="form-control hidden">
+                <span class="plus" *ngIf="info.img3 == '' || info.img3 == null || info.img3 == undefined">+</span>
+                <img *ngIf="info.img3 != '' && info.img3 != null && info.img3 != undefined" src="{{f + info.img3}}" alt="{{info.img3}} 그림">
+                <input type="file" id="file3" accept="image/*" name="image3" (click)="img('img3')" class="form-control hidden">
             </label>
-            <select name="meal" class="form-control meal">
+            <select name="meal3" [(ngModel)]="info.meal3" class="form-control meal">
                 <option value="">선택</option>
                 <option value="아침">아침</option>
                 <option value="점심">점심</option>
@@ -43,7 +46,7 @@
             </select>
         </div>
     </div>
-    <textarea class="preWrap comment form-control" placeholder="코멘트를 남겨주세요"></textarea>
+    <textarea class="preWrap comment form-control" name="note" [(ngModel)]="info.note" placeholder="코멘트를 남겨주세요"></textarea>
 </div>
 <div class="buttonBox">
     <button mat-raised-button color="primary" class="adjust" (click)='adjust()'>추가</button>

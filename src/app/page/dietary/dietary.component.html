@@ -5,26 +5,26 @@
     <span class="arrow right"(click)='datenext()'></span>
 </div>
 <button class="addDietary" (click)='new()'>+</button>
-<p class="noDiet" *ngIf='show.length == 0'>업로드된 식단이 없습니다.</p>
-<div class="wrap" *ngIf='show.length > 0'>
-    <mat-card class="dietcard" *ngFor ='let d of show'>
+<p class="noDiet" *ngIf='dataset.length == 0'>업로드된 식단이 없습니다.</p>
+<div class="wrap" *ngIf='dataset.length > 0'>
+    <mat-card class="dietcard" *ngFor ='let d of dataset'>
         <div class="cardHedaer">
             <span class="cDate">{{d.date | date:'yyyy년 MM월 dd일'}}</span>
             <span class="edit" (click)='edit(d)'>편집</span>
         </div>
         <div class="photoWrap">
-            <div class="inlineBlock imgCard" *ngFor='let m of d.meal'>
-                <img src="{{m.img}}" alt="{{m.label}}">
-                <p class="when">{{m.label}}</p>
+            <div class="inlineBlock imgCard" *ngIf="d.img1 != null">
+                <img src="{{f + d.img1}}" alt="{{d.meal1}}">
+                <p class="when">{{d.meal1}}</p>
             </div>
-            <!-- <div class="inlineBlock imgCard">
-                <img src="../../../assets/photo/playColor.png" alt="">
-                <p class="when">점심</p>
-            </div> -->
-            <!-- <div class="inlineBlock imgCard"> -->
-                <!-- <img src="../../../assets/photo/playColor.png" alt=""> -->
-                <!-- <p class="when"></p> -->
-            <!-- </div> -->
+            <div class="inlineBlock imgCard" *ngIf="d.img2 != null">
+                <img src="{{f + d.img2}}" alt="{{d.meal2}}">
+                <p class="when">{{d.meal2}}</p>
+            </div>
+            <div class="inlineBlock imgCard" *ngIf="d.img3 != null">
+                <img src="{{f + d.img3}}" alt="{{d.meal3}}">
+                <p class="when">{{d.meal3}}</p>
+            </div>
         </div>
         <div class="preWrap comment">
             {{d.comment}}

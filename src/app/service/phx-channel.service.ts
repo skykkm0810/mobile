@@ -43,6 +43,12 @@ export class PhxChannelService {
   @Output() Presents: EventEmitter<any> = new EventEmitter();
   @Output() PresentAdd: EventEmitter<any> = new EventEmitter();
   @Output() PresentAddInvalid: EventEmitter<any> = new EventEmitter();
+  @Output() Drugs: EventEmitter<any> = new EventEmitter();
+  @Output() DrugAdd: EventEmitter<any> = new EventEmitter();
+  @Output() Meals: EventEmitter<any> = new EventEmitter();
+  @Output() MealAdd: EventEmitter<any> = new EventEmitter();
+  @Output() MealUp: EventEmitter<any> = new EventEmitter();
+  @Output() MealDel: EventEmitter<any> = new EventEmitter();
   @Output() Senior: EventEmitter<any> = new EventEmitter();
   @Output() Seniors: EventEmitter<any> = new EventEmitter();
   @Output() Event: EventEmitter<any> = new EventEmitter();
@@ -94,6 +100,30 @@ export class PhxChannelService {
       // console.log('cpf:mobile:list from phx socket: ', payload);
       this.PresentAddInvalid.emit(payload.body);
     })
+    this.mobileChannel.on('mobile:drug:list', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.Drugs.emit(payload.body);
+    })
+    this.mobileChannel.on('mobile:drug:add', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.DrugAdd.emit(payload.body);
+    })
+    this.mobileChannel.on('mobile:meal:list', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.Meals.emit(payload.body);
+    })
+    this.mobileChannel.on('mobile:meal:add', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.MealAdd.emit(payload.body);
+    })
+    this.mobileChannel.on('mobile:meal:up', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.MealUp.emit(payload.body);
+    })
+    this.mobileChannel.on('mobile:meal:del', payload => {
+      // console.log('cpf:mobile:list from phx socket: ', payload);
+      this.MealDel.emit(payload.body);
+    })
 
     this.seniorChannel = this.socket.channel('cpf:senior', {});
     this.seniorChannel
@@ -136,6 +166,9 @@ export class PhxChannelService {
       case 'present':
         this.mobileChannel.push("mobile:present:add:req", {body: message});
       break;
+      case 'meal':
+        this.mobileChannel.push("mobile:meal:add:req", {body: message});
+      break;
 
       default:
         break;
@@ -152,6 +185,12 @@ export class PhxChannelService {
       break;
       case 'present':
         this.mobileChannel.push('mobile:presents:list:req', { body: message });
+      break;
+      case 'drug':
+        this.mobileChannel.push('mobile:drug:list:req', { body: message });
+      break;
+      case 'meal':
+        this.mobileChannel.push('mobile:meal:list:req', { body: message });
       break;
       
     
@@ -170,7 +209,7 @@ export class PhxChannelService {
       break;
       
       default:
-        break;
+      break;
     
     }
   }
@@ -179,10 +218,13 @@ export class PhxChannelService {
     switch ( channel ) {
       case 'mobile':
         this.mobileChannel.push('mobile:detail:update:req', {body: message});
-        break;
+      break;
+      case 'meal':
+        this.mobileChannel.push('mobile:meal:up:req', {body: message});
+      break;
 
       default:
-        break;
+      break;
     }
   }
 
@@ -190,10 +232,13 @@ export class PhxChannelService {
     switch ( channel ) {
       case 'mobile':
         this.mobileChannel.push('mobile:delete:req', {body: message});
-        break;
+      break;
+      case 'meal':
+        this.mobileChannel.push('mobile:meal:del:req', {body: message});
+      break;
 
       default:
-        break;
+      break;
     }
   }
 }

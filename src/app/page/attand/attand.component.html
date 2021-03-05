@@ -58,7 +58,7 @@
         <span class="label">연락처</span>
         <span class="contents">{{forBox.gcontact}}</span>
       </p>
-      <div class="btnC" *ngIf="forBox.present.length == 0">
+      <div class="btnC" *ngIf="nd == today && forBox.present.length == 0">
         <button type="button" class="btn" (click)="present(forBox)">출석</button>
       </div>
     </div>

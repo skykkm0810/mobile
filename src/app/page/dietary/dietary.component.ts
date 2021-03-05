@@ -1,34 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Dietary } from '../../interface/interface';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
 import { AddDietaryComponent } from '../../modal/add-dietary/add-dietary.component'
 import { EditDietaryComponent } from '../../modal/edit-dietary/edit-dietary.component'
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
+import { AuthService } from 'src/app/service/auth.service';
+import { Environment } from 'src/app/environment/environment';
 @Component({
   selector: 'app-dietary',
   templateUrl: './dietary.component.html',
   styleUrls: ['./dietary.component.css']
 })
-export class DietaryComponent {
+export class DietaryComponent implements OnInit, AfterViewInit, OnDestroy {
   
   constructor(
     private dialog: MatDialog,
     private dialog2: MatDialog,
+    private phxChannel: PhxChannelService,
+    private auth: AuthService,
   ) {
-   }
+  }
   
   ngOnInit(): void {
     this.dietMatch();
+    this.init();
   }
   ngAfterViewInit(): void {
     
   }
+  ngOnDestroy(): void {
+
+  }
+  
+  
+  subs = [];
+  user;
+  data = {
+    today: null,
+    centerId: null,
+  };
+
   show=new Array;
+  dataset = [];
   diet = Dietary;
   today=new Date();
   info = this.today;
   year=this.today.getFullYear();
   month=this.today.getMonth(); 
   day=this.today.getDate();
+  f = Environment.filePath;
+
+
+  init() {
+    let sub;
+    sub = this.phxChannel.Meals.subscribe( data => {
+      this.dataset = data;
+      console.log(data);
+    })
+    this.subs.push(sub);
+
+    this.user = JSON.parse(this.auth.getUserData());
+    this.data = {
+      today: new Date(this.info),
+      centerId: this.user.centerId,
+    }
+
+    this.phxChannel.gets('meal', this.data);
+  }
+
+  
   dateprev(){
     this.month = this.month - 1;
     if(this.month == 0){
@@ -36,8 +76,12 @@ export class DietaryComponent {
       this.month = 12
     }
     this.info = new Date(this.year,this.month);
-    this.dietMatch();
-    this.fixSize();
+    this.data = {
+      today: new Date(this.info),
+      centerId: this.user.centerId,
+    }
+
+    this.phxChannel.gets('meal', this.data);
   }
   datenext(){
     this.month = this.month + 1;
@@ -46,8 +90,12 @@ export class DietaryComponent {
       this.month = 1
     }
     this.info = new Date(this.year,this.month);
-    this.dietMatch();
-    this.fixSize();
+    this.data = {
+      today: new Date(this.info),
+      centerId: this.user.centerId,
+    }
+
+    this.phxChannel.gets('meal', this.data);
   }
   // 데이터 가리기
   dietMatch(){

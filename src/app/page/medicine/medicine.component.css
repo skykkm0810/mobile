@@ -196,3 +196,17 @@
     font-size: 18px;
     color:#fff
 }
+
+.imgradius {
+    border-radius: 50%;
+}
+
+.btnC {
+    text-align: right;
+    margin: 0 10px 10px;
+}
+.btnC .btn {
+    background-color: #eee;
+    color: #333;
+    padding: 5px 15px;
+}

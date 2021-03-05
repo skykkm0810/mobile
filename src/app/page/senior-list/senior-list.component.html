@@ -5,18 +5,18 @@
     <p class="searchButton pointer"><span class="buttonIcon"></span></p>
   </div>
   <div class="listWrap">
-    <div class='list chkon' (click)="upscroll(att)" *ngFor='let att of attds'>
+    <div class='list chkon' (click)="upscroll(att)" *ngFor='let att of dataset'>
       <div class="imgWrap ok">
-        <img src="{{filePath}}{{att.img}}" alt="{{att.name}}님 사진">
+        <img class="imgradius" src="{{filePath}}{{att.file}}" alt="{{att.name}}님 사진">
       </div>
       <span class="name">{{att.name}}</span>
       <span class="attend">출석</span>
     </div>
   </div>
   <div class="listWrap">
-    <div class='list' (click)="upscroll(att)" *ngFor='let att of attdn'>
+    <div class='list' (click)="upscroll(att)" *ngFor='let att of datasetu'>
       <div class="imgWrap none">
-        <img src="{{filePath}}{{att.img}}" alt="{{att.name}}님 사진">
+        <img class="imgradius" src="{{filePath}}{{att.file}}" alt="{{att.name}}님 사진">
       </div>
       <span class="name">{{att.name}}</span>
       <span class="notAttend">결석</span>
@@ -29,7 +29,7 @@
     </span>
     <div class="imgoutWrap">
       <div class="imginnerWrap">
-        <img src="{{filePath}}{{forBox.img}}" alt="{{forBox.name}}님 사진">
+        <img class="imgradius" src="{{filePath}}{{forBox.file}}" alt="{{forBox.name}}님 사진">
       </div>
     </div>
     <div class="tag">
@@ -39,15 +39,15 @@
     <div class="tagInfoBox">
       <p class="tagInfo desc">
         <span class="label">특이사항</span>
-        <span class="contents">{{forBox.desc}}</span>
+        <span class="contents">{{forBox.note}}</span>
       </p>
-      <p class="tagInfo teacher">
+      <!-- <p class="tagInfo teacher">
         <span class="label">담당교사</span>
         <span class="contents">{{forBox.teacher}} 교사</span>
-      </p>
+      </p> -->
       <p class="tagInfo contact">
         <span class="label">보호자연락처</span>
-        <span class="contents">{{forBox.guardPN}}</span>
+        <span class="contents">{{forBox.gcontact}}</span>
       </p>
     </div>
   </div>

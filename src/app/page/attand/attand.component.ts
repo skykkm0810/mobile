@@ -17,6 +17,7 @@ export class AttandComponent implements OnInit, AfterViewInit, OnDestroy {
   datasetu: Senior[] = [];
   user;
   info: any;
+  nd;
   msg = {
     today: null,
     centerId: null,
@@ -31,6 +32,8 @@ export class AttandComponent implements OnInit, AfterViewInit, OnDestroy {
   day : any;
   forBox:any;
   filePath = Environment.filePath;
+  today = new Date().setHours(0, 0, 0, 0);
+
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
@@ -40,10 +43,10 @@ export class AttandComponent implements OnInit, AfterViewInit, OnDestroy {
     
   ngOnInit(): void {
     this.user = JSON.parse(this.auth.getUserData());
-    console.log(this.user);
     this.msg.centerId = this.user.centerId*1;
     this.info = this.route.snapshot.paramMap.get('date');
     this.msg.today = new Date(this.info);
+    this.nd = new Date(this.info).setHours(0, 0, 0, 0);
     this.year = Number(this.info.split('-')[0]);
     this.month = Number(this.info.split('-')[1]);
     this.day = Number(this.info.split('-')[2]);
@@ -132,6 +135,7 @@ export class AttandComponent implements OnInit, AfterViewInit, OnDestroy {
     var dayF = ('00' + this.day).slice(-2);
     this.info = this.year+'-'+monthF+'-'+dayF;
     this.msg.today = new Date(this.info);
+    this.nd = new Date(this.info).setHours(0, 0, 0, 0);
     this.phxChannel.gets('present', this.msg);
 
     // this.attendMatch();
@@ -151,6 +155,7 @@ export class AttandComponent implements OnInit, AfterViewInit, OnDestroy {
     var dayF = ('00' + this.day).slice(-2);
     this.info = this.year+'-'+monthF+'-'+dayF;
     this.msg.today = new Date(this.info);
+    this.nd = new Date(this.info).setHours(0, 0, 0, 0);
     this.phxChannel.gets('present', this.msg);
 
     // this.attendMatch();

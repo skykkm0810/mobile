@@ -34,6 +34,21 @@ export interface Senior {
     accountId: number;
   }]
 }
+
+export interface SeniorDrug {
+  id: number;
+  name: string;
+  note: string;
+  gcontact: string;
+  file: string;
+  drug: [{
+    id: number;
+    date: Date;
+    seniorId: number;
+    accountId: number;
+  }]
+}
+
 export const PROGRAM  = [
     {id:1, name:'댄스교실', date:'2021-02-23T13:00',class:'제 2교실',imgurl:'photo/stretch.jpg'},
     {id:2, name:'요리교실', date:'2021-02-24T16:00',class:'제 2교실',imgurl:'photo/playColor.png'},
